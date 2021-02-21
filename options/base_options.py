@@ -35,7 +35,7 @@ class BaseOptions():
         self.parser.add_argument('--input_nc', type=int, default=1, help='# of input channels')
         self.parser.add_argument('--output_nc', type=int, default=4, help='# of input channels in first conv layer')
         self.parser.add_argument('--conv_layers', type=int, default=5, help='# of conv layers')
-        self.parser.add_argument('--num_plane', type=int, default=3, help='# of symmetry planes')
+        self.parser.add_argument('--num_plane', type=int, default=0, help='# of symmetry planes')
         self.parser.add_argument('--num_quat', type=int, default=3, help='# of quats')
 
         self.initialized = True

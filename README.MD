@@ -32,64 +32,20 @@ Our method predicts global planar reflective symmetry of a given 3D shape. It in
     - MATLAB R2018b or later
 
 
-## Data and Checkpoint
-
-All the [data](https://drive.google.com/file/d/1myWnHmuk2XD7lyHJL7KAgok89DT7SETF/view?usp=sharing) and [checkpoint](https://drive.google.com/file/d/1ItmG9tQ7vEE31anDU_z2yER2Wdon9_Ez/view?usp=sharing) used to reproduce the result is stored in google drive. Links are also available in `data_checkpoint_link.txt`. Save the two zip files in current directory. 
-
-After downloading the data and checkpoint, the directory tree looks like this:
-
-```txt
-── SDMNET_stamp
-   ├── checkpoint
-   ├── code
-   ├── data
-   ├── data_checkpoint_link.txt
-   ├── install.sh
-   ├── liability form.pdf
-   ├── introduction.txt
-   ├── mvdata.sh
-   ├── README.md
-   └── teaser.jpg
-```
-
-Then execute:
-```sh
-unzip data.zip
-cp ./data/chair* ./code/python/chair_reproduce
-cp ./data/plane* ./code/python/plane_reproduce
-
-unzip checkpoint.zip
-mv ./checkpoint/05060123_6863bin_1-joint_1-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_chair-trcet_1.0 ./code/python/chair_reproduce
-mv ./checkpoint/05050238_2556bin_0-joint_0-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_plane-trcet_1.0 ./code/python/plane_reproduce
-```
-
 ## Reproduce
+First run `python test.py --dataroot ./datasets/rep --name last` to get the results in `results` directory.
 
-1. Interpolation between shapes
 
-   ```shell
-   cd ./code/python/plane_reproduce
-   CUDA_VISIBLE_DEVICES='' python ./test_stacknewvae.py --output_dir ./05050238_2556bin_0-joint_0-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_plane-trcet_1.0 --interids  '1f5537f4747ec847622c69c3abc6f80' 'f16381a160f20bc4a3b534252984039' 'efbb9337b9bd3cab56ed1d365b05390d'
-   
-   cd ../chair_reproduce
-   CUDA_VISIBLE_DEVICES='' python ./test_stacknewvae.py --output_dir ./05060123_6863bin_1-joint_1-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_chair-trcet_1.0 --interids '4e664dae1bafe49f19fb4103277a6b93' '1c17cc67b8c747c3febad4f49b26ec52' '2bbf00f0c583fd8a4b3c42e318f3affc'
-   ```
+1. Shape completion (Fig. 9 in the paper).
 
-   After running the command, interpolated meshes are saved to a sub directory `interpolationxxxx`  in the checkpoint directory specified by `--output_dir` argument,  `./05050238_2556bin_0-joint_0-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_plane-trcet_1.0/interpolation80000`for example.
+The parameters of detected planes are in `results/last/test_latest/com_piano.mat`. To visualize the results, please run `visual_completion.m` in MATLAB. The generated `partial_piano.obj` shows the partial piano shape, and `partial_piano_plane.obj` shows the detected plane. `leg.ply` shows the completed leg.
 
-2. Postprocess
+3. Robustness testing (Fig. 11 in the paper).
 
-   Open `./code/matlab` in MATLAB. Execute following commands.
+The parameters of detected planes are in  `results/last/test_latest/partial_piano.mat`. To visualize the results, please run `visual_robust.m` in MATLAB.
 
-   ```matlab
-   GetOptimizedObj('../python/plane_reproduce/05050238_2556bin_0-joint_0-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_plane-trcet_1.0/interpolation80000', 'plane', 2, 0, 0)
-    
-   GetOptimizedObj('../python/chair_reproduce/05060123_6863bin_1-joint_1-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_chair-trcet_1.0/interpolation100000', 'chair', 2, 0, 0)
-   ```
 
-   The output meshes are in `../python/plane_reproduce/05050238_2556bin_0-joint_0-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_plane-trcet_1.0/interpolation80000` and `../python/chair_reproduce/05060123_6863bin_1-joint_1-l0_100.0-l2_10.0-l3_1.0-l4_0.001-model_chair-trcet_1.0/interpolation100000`.
-
-   Open those meshes in meshlab and you will see the reproduced results for **Fig.1** in the original paper. (**NOTE**: Some parts' faces might have wrong normals, use **double face** mode for beter visualization)
+Open those meshes in [SAP 3D Visual Enterprise Author 9.0](https://www.sap.com/hk/products/product-visualization.html) (software we used in the paper for visualization) or [MeshLab](https://www.meshlab.net/) (free software but cannot visualize heatmap) and you will see the reproduced results. (**NOTE**: use **double face** mode for better visualization).
 
 ## Citation
 If you found this code useful please cite our work as:

@@ -41,7 +41,7 @@ for i, data in enumerate(dataset):
     name = os.path.splitext(short_path)[0]
 
 
-    model = {'name':name, 'voxel':matdata['Volume'], 'vertices':matdata['vertices'], 'faces':matdata['faces'], 'sample':np.transpose(matdata['surfaceSamples'])}
+    model = {'name':name, 'voxel':matdata['Volume'], 'vertices':matdata['vertices'], 'faces':matdata['faces'], 'sample':np.transpose(matdata['surfaceSamples']), 'axisangle': matdata['axisangle']}
     for j in range(opt.num_plane):
         model['plane'+str(j)] = plane[j].cpu().numpy()
     for j in range(opt.num_quat):

@@ -51,7 +51,7 @@ class SymDataset(BaseDataset):
             cp = data['closestPoints']
             cp=torch.from_numpy(cp).float().reshape(-1,3)
         else:
-            cp = None
+            cp = torch.zeros(1000,3)
         
         input_dict = {'voxel': voxel, 'sample': sample, 'cp': cp, 'path':data_path}
             
