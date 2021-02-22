@@ -1,6 +1,4 @@
-# Deep Generative Network for Structured Deformable Mesh
-
-![](./teaser.jpg)
+# PRS-Net: Planar Reflective Symmetry Detection Net for 3D Models
 
 ## Goal
 
