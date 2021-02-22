@@ -45,10 +45,7 @@ The parameters of detected planes are in `results/last/test_latest/com_piano.mat
 
 3. Robustness testing (Fig. 11 in the paper).
 
-The parameters of detected planes are in  `results/last/test_latest/partial_piano.mat`. To visualize the results, please run `visual_robust.m` in MATLAB.
-
-
-Open those meshes in [SAP 3D Visual Enterprise Author 9.0](https://www.sap.com/hk/products/product-visualization.html) (software we used in the paper for visualization) or [MeshLab](https://www.meshlab.net/) (free software but cannot visualize heatmap) and you will see the reproduced results. (**NOTE**: use **double face** mode for better visualization).
+The parameters of detected planes are in  `results/last/test_latest/partial_piano.mat`. To visualize the results, please run `visual_robust.m` in MATLAB. The generated `robust_piano.obj` shows the partial piano shape, and `error_sap/meshlab.obj` shows the error heatmap. (**NOTE**: We use [SAP 3D Visual Enterprise Author 9.0](https://www.sap.com/hk/products/product-visualization.html) for visualization. [MeshLab](https://www.meshlab.net/) also can visualize shapes but cannot properly visualize heatmap we created.)
 
 ## Citation
 If you found this code useful please cite our work as:
