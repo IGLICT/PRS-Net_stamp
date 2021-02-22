@@ -33,7 +33,10 @@ Our method predicts global planar reflective symmetry of a given 3D shape. It in
 
 
 ## Reproduce
-First run `python test.py --dataroot ./datasets/rep --name last` to get the results in `results` directory.
+
+
+
+Run `source ~/prsnet/bin/activate;python test.py --dataroot ./datasets/rep --name last` to get the results in `results` directory.
 
 
 1. Shape completion (Fig. 9 in the paper).
