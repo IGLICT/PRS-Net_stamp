@@ -34,8 +34,6 @@ Our method predicts global planar reflective symmetry of a given 3D shape. It in
 
 ## Reproduce
 
-
-
 Run `source ~/prsnet/bin/activate;python test.py --dataroot ./datasets/rep --name last` to get the results in `results` directory.
 
 
@@ -45,7 +43,8 @@ The parameters of detected planes are in `results/last/test_latest/com_piano.mat
 
 3. Robustness testing (Fig. 11 in the paper).
 
-The parameters of detected planes are in  `results/last/test_latest/partial_piano.mat`. To visualize the results, please run `visual_robust.m` in MATLAB. The generated `robust_piano.obj` shows the partial piano shape, and `error_sap/meshlab.obj` shows the error heatmap. (**NOTE**: We use [SAP 3D Visual Enterprise Author 9.0](https://www.sap.com/hk/products/product-visualization.html) for visualization. [MeshLab](https://www.meshlab.net/) also can visualize shapes but cannot properly visualize heatmap we created.)
+The parameters of detected planes are in  `results/last/test_latest/partial_piano.mat`. To visualize the results, please run `visual_robust.m` in MATLAB. The generated `robust_piano.obj` shows the partial piano shape, and `error_sap/meshlab.obj` shows the error heatmap. (**NOTE**: We use [SAP 3D Visual Enterprise Author 9.0](https://www.sap.com/hk/products/product-visualization.html) for visualization. [MeshLab](https://www.meshlab.net/) also can visualize shapes but cannot properly visualize heatmap.)
+
 
 ## Citation
 If you found this code useful please cite our work as:
